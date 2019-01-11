@@ -4,7 +4,7 @@
   "description": "I'm town.",
   "main": "index.js",
   "scripts": {
-    "server:reload": "nodemon --watch . --ignore ./node_modules ./index.js",
+    "debug": "nodemon --watch . --ignore ./node_modules --inspect=0.0.0.0:9229 ./index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +23,8 @@
   "homepage": "https://github.com/bvarberg/mafio#readme",
   "devDependencies": {
     "nodemon": "1.18.9"
+  },
+  "dependencies": {
+    "hapi": "17.8.1"
   }
 }
