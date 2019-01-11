@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
   debuggable:
@@ -11,3 +11,15 @@ services:
       - '9229:9229'
     environment:
       PORT: '3000'
+  test-watcher:
+    build: .
+    command: npm run test:watch
+    volumes:
+      - type: bind
+        source: ./test
+        target: /usr/src/mafio/test
+        read_only: true
+      - type: bind
+        source: ./app
+        target: /usr/src/mafio/app
+        read_only: true
