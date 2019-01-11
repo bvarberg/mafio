@@ -1,0 +1,27 @@
+{
+  "name": "mafio",
+  "version": "0.1.0",
+  "description": "I'm town.",
+  "main": "index.js",
+  "scripts": {
+    "server:reload": "nodemon --watch . --ignore ./node_modules ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bvarberg/mafio.git"
+  },
+  "keywords": [
+    "mafia",
+    "game"
+  ],
+  "author": "Byron Varberg <byron@byronvarberg.com> (https://www.byronvarberg.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bvarberg/mafio/issues"
+  },
+  "homepage": "https://github.com/bvarberg/mafio#readme",
+  "devDependencies": {
+    "nodemon": "1.18.9"
+  }
+}

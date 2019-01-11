@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    command: npm run server:reload
+    volumes:
+      - .:/usr/src/mafio
+    ports:
+      - '3000:3000'
+    environment:
+      PORT: '3000'
