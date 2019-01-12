@@ -9,8 +9,8 @@ services:
     ports:
       - '3000:3000'
       - '9229:9229'
-    environment:
-      PORT: '3000'
+    env_file:
+      - .env
   test-watcher:
     build: .
     command: npm run test:watch
