@@ -1,7 +1,7 @@
 version: '3.2'
 
 services:
-  debuggable:
+  server:
     build: .
     command: npm run debug
     volumes:
