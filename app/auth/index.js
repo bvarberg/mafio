@@ -44,7 +44,7 @@ module.exports = {
           });
 
           // NOTE: Redirect to authenticated entry point
-          return h.redirect('/');
+          return h.redirect('/protected');
         },
       },
     });
