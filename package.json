@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "debug": "nodemon --watch . --ignore ./node_modules --inspect=0.0.0.0:9229 ./index.js",
+    "start": "node ./index.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -27,6 +28,8 @@
     "nodemon": "1.18.9"
   },
   "dependencies": {
-    "hapi": "17.8.1"
+    "bell": "9.4.0",
+    "hapi": "17.8.1",
+    "yar": "9.1.0"
   }
 }
