@@ -10,7 +10,7 @@ const main = async () => {
     });
 
     await server.start();
-    console.log(`Mafio server running at: ${server.info.uri}`);
+    // console.log(`Mafio server running at: ${server.info.uri}`);
   } catch (err) {
     console.error(err);
     process.exitCode = 1;

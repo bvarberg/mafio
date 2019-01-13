@@ -10,6 +10,9 @@ const configuration = {
       clientSecret: process.env.TWITCH_CLIENT_SECRET,
     },
   },
+  logging: {
+    prettyPrint: process.env.NODE_ENV === 'development',
+  },
 };
 
 module.exports = configuration;

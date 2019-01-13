@@ -1,4 +1,5 @@
 const Hapi = require('hapi');
+const Pino = require('hapi-pino');
 
 const auth = require('./auth');
 
@@ -6,6 +7,13 @@ class Mafio {
   static async createServer(options) {
     const server = Hapi.server({
       port: options.port,
+    });
+
+    await server.register({
+      plugin: Pino,
+      options: {
+        prettyPrint: options.logging.prettyPrint,
+      },
     });
 
     await server.register({
