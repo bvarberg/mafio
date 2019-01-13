@@ -46,7 +46,6 @@ class Mafio {
       path: '/',
       handler: (request, h) => {
         return h.view('root');
-        // return 'Root';
       },
     });
 
@@ -57,10 +56,10 @@ class Mafio {
         auth: 'session',
         handler: (request, h) => {
           const { displayName } = request.auth.credentials;
+
           return h.view('protected', {
             displayName,
           });
-          // return `Accessible if authenticated: ${displayName}`;
         },
       },
     });

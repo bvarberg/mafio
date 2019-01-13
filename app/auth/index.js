@@ -31,19 +31,19 @@ module.exports = {
         auth: 'twitch',
         handler: (request, h) => {
           if (!request.auth.isAuthenticated) {
-            // NOTE: Redirect/render authentication error
-
-            return 'Authentication failed due to: ' + request.auth.error.message;
+            // NOTE: Error view
+            request.log(['error', 'auth'], request.auth.error);
+            return h.redirect('/');
           }
 
           // NOTE: Find/create user (or just use the values from the identity provider)
-          // NOTE: Add user identifier to session
+
           request.cookieAuth.set({
             twitchID: request.auth.credentials.profile._id,
             displayName: request.auth.credentials.profile.display_name,
           });
+          request.log(['auth'], 'set Twitch credentials in cookie session');
 
-          // NOTE: Redirect to authenticated entry point
           return h.redirect('/protected');
         },
       },
