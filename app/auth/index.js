@@ -1,15 +1,24 @@
 const Bell = require('bell');
+const CookieAuth = require('hapi-auth-cookie');
 
 module.exports = {
   name: 'auth',
   version: '0.1.0',
   register: async function (server, options) {
-    await server.register(Bell);
+    // Register the auth schemes 'cookie' and 'bell'
+    await server.register([CookieAuth, Bell]);
+
+    server.auth.strategy('session', 'cookie', {
+      password: options.cookie.encryptionKey,
+      isSecure: options.cookie.isSecure,
+      redirectTo: '/auth/twitch',
+      appendNext: true,
+    });
 
     server.auth.strategy('twitch', 'bell', {
       provider: 'twitch',
       password: options.cookie.encryptionKey,
-      isSecure: false,
+      isSecure: options.cookie.isSecure,
       clientId: options.auth.twitch.clientID,
       clientSecret: options.auth.twitch.clientSecret,
       scope: ['user_read'],
@@ -29,8 +38,10 @@ module.exports = {
 
           // NOTE: Find/create user (or just use the values from the identity provider)
           // NOTE: Add user identifier to session
-          request.yar.set('twitch_id', request.auth.credentials.profile._id);
-          request.yar.set('twitch_display_name', request.auth.credentials.profile.display_name);
+          request.cookieAuth.set({
+            twitchID: request.auth.credentials.profile._id,
+            displayName: request.auth.credentials.profile.display_name,
+          });
 
           // NOTE: Redirect to authenticated entry point
           return h.redirect('/');
